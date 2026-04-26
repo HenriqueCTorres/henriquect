@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Henrich1</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <canvas
+        id="data-web"
+        width="1000"
+        height="200"
+        aria-hidden="true"
+      ></canvas>
+      <h1>Henrique Cunha Torres</h1>
+      <p>Analista de Dados & Desenvolvedor Backend Iniciante</p>
+    </header>
+    <main>
+      <section class="about">
+        <h2>Sobre Mim</h2>
+        <p>
+          🎓 Sou estudante de Análise e Desenvolvimento de Sistemas na FIAP,
+          apaixonado por tecnologia e sempre em busca de novos aprendizados.
+          Atualmente me desenvolvo como Dev Full Stack, com foco em criar
+          soluções práticas, funcionais e que gerem impacto positivo.
+        </p>
+      </section>
+      <section class="projects">
+        <h2>Projetos</h2>
+        <ul>
+          <li>
+            <strong
+              ><a
+                href="https://github.com/Driven-Soft/HC-Auxilia-React"
+                target="_blank"
+                >HC Auxilia</a
+              ></strong
+            >: Sistema voltado à área da saúde, com integrações externas e
+            gestão de dados.
+          </li>
+          <li>
+            <strong
+              ><a href="https://github.com/Driven-Soft/Auralis" target="_blank"
+                >Auralis</a
+              ></strong
+            >: Plataforma de bem-estar focada em saúde mental, oferecendo
+            recursos para relaxamento, organização emocional e melhoria da
+            qualidade de vida.
+          </li>
+        </ul>
+      </section>
+      <section class="contact">
+        <h2>Contato</h2>
+        <ul>
+          <li>
+            Email:
+            <a href="mailto:henriquect08@gmail.com">henriquect08@gmail.com</a>
+          </li>
+          <li>
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/henrich1/" target="_blank"
+              >henrich1</a
+            >
+          </li>
+          <li>
+            GitHub:
+            <a href="https://github.com/HenriqueCTorres" target="_blank"
+              >HenriqueCTorres</a
+            >
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2026 Henrique Cunha Torres</p>
+    </footer>
+    <script>
+      // Desenha "teias" ou redes de dados no topo
+      const canvas = document.getElementById("data-web");
+      if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext("2d");
+        const w = canvas.width;
+        const h = canvas.height;
+        const points = [];
+        const numPoints = 24;
+        for (let i = 0; i < numPoints; i++) {
+          points.push({
+            x: Math.random() * w,
+            y: Math.random() * h * 0.7 + 20,
+          });
+        }
+        // Conecta pontos próximos
+        for (let i = 0; i < numPoints; i++) {
+          for (let j = i + 1; j < numPoints; j++) {
+            const dx = points[i].x - points[j].x;
+            const dy = points[i].y - points[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 180) {
+              ctx.strokeStyle = "rgba(100,200,255,0.18)";
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(points[i].x, points[i].y);
+              ctx.lineTo(points[j].x, points[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        // Desenha os pontos
+        for (let i = 0; i < numPoints; i++) {
+          ctx.beginPath();
+          ctx.arc(points[i].x, points[i].y, 4, 0, 2 * Math.PI);
+          ctx.fillStyle = "rgba(100,200,255,0.7)";
+          ctx.fill();
+        }
+      }
+    </script>
+  </body>
+</html>
