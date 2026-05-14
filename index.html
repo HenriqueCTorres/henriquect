@@ -1,120 +1,410 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Henrich1</title>
+    <title>Henrique Torres</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <canvas
-        id="data-web"
-        width="1000"
-        height="200"
-        aria-hidden="true"
-      ></canvas>
-      <h1>Henrique Cunha Torres</h1>
-      <p>Analista de Dados & Desenvolvedor Backend Iniciante</p>
-    </header>
-    <main>
-      <section class="about">
-        <h2>Sobre Mim</h2>
-        <p>
-          🎓 Sou estudante de Análise e Desenvolvimento de Sistemas na FIAP,
-          apaixonado por tecnologia e sempre em busca de novos aprendizados.
-          Atualmente me desenvolvo como Dev Full Stack, com foco em criar
-          soluções práticas, funcionais e que gerem impacto positivo.
+    <!-- NAVBAR -->
+
+    <nav>
+      <div class="container nav-content">
+        <div class="logo">Henrique<span> C. Torres</span></div>
+
+        <ul class="nav-links">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experiencia">Formação</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1>Henrique <span>C. Torres</span></h1>
+
+          <p>
+            Estudante de Análise e Desenvolvimento de Sistemas focado em Dados,
+            Business Intelligence e soluções orientadas por dados.
+          </p>
+          <p class="hero-mini">SQL • Power BI • Python • Analytics</p>
+
+          <div class="buttons">
+            <a href="#projetos" class="btn btn-primary"> Ver Projetos </a>
+
+            <a href="#contato" class="btn btn-secondary"> Contato </a>
+
+            <a
+              href="/arquivos/HenriqueTorres_AnalistaDeDados.pdf"
+              class="btn btn-secondary"
+              target="_blank"
+            >
+              Abrir CV
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-content">
+            <h3>Stack Principal</h3>
+
+            <p>
+              Transformando dados em insights estratégicos através de
+              dashboards, analytics e automação.
+            </p>
+
+            <div class="hero-badges">
+              <div class="badge">SQL</div>
+              <div class="badge">Python</div>
+              <div class="badge">Power BI</div>
+              <div class="badge">Excel</div>
+              <div class="badge">APIs REST</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+
+    <section id="sobre">
+      <div class="container">
+        <h2 class="section-title">Sobre Mim</h2>
+
+        <p class="section-subtitle">
+          Estudante de ADS na FIAP com foco em Análise de Dados e Business
+          Intelligence.
         </p>
-      </section>
-      <section class="projects">
-        <h2>Projetos</h2>
-        <ul>
-          <li>
-            <strong
-              ><a
-                href="https://github.com/Driven-Soft/HC-Auxilia-React"
-                target="_blank"
-                >HC Auxilia</a
-              ></strong
-            >: Sistema voltado à área da saúde, com integrações externas e
-            gestão de dados.
-          </li>
-          <li>
-            <strong
-              ><a href="https://github.com/Driven-Soft/Auralis" target="_blank"
-                >Auralis</a
-              ></strong
-            >: Plataforma de bem-estar focada em saúde mental, oferecendo
-            recursos para relaxamento, organização emocional e melhoria da
-            qualidade de vida.
-          </li>
-        </ul>
-      </section>
-      <section class="contact">
-        <h2>Contato</h2>
-        <ul>
-          <li>
-            Email:
-            <a href="mailto:henriquect08@gmail.com">henriquect08@gmail.com</a>
-          </li>
-          <li>
-            LinkedIn:
-            <a href="https://www.linkedin.com/in/henrich1/" target="_blank"
-              >henrich1</a
-            >
-          </li>
-          <li>
-            GitHub:
-            <a href="https://github.com/HenriqueCTorres" target="_blank"
-              >HenriqueCTorres</a
-            >
-          </li>
-        </ul>
-      </section>
-    </main>
+
+        <div class="about-grid">
+          <div class="glass-card">
+            <h3>Resumo Profissional</h3>
+
+            <p>
+              Sou estudante de ADS na FIAP com foco em Análise de Dados e
+              Business Intelligence. Tenho experiência acadêmica no
+              desenvolvimento de dashboards, análises de dados e projetos
+              voltados à geração de insights para apoio à tomada de decisão.
+            </p>
+
+            <p>
+              Possuo conhecimento em SQL, Python, Power BI, Excel, Git/GitHub e
+              desenvolvimento de aplicações.
+            </p>
+          </div>
+
+          <div class="glass-card">
+            <h3>Tecnologias</h3>
+
+            <div class="tech-list">
+              <div class="tech">SQL</div>
+              <div class="tech">Python</div>
+              <div class="tech">Power BI</div>
+              <div class="tech">Excel</div>
+              <div class="tech">Git/GitHub</div>
+              <div class="tech">APIs REST</div>
+              <div class="tech">Modelagem de Dados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+
+    <section id="projetos">
+      <div class="container">
+        <h2 class="section-title">Projetos</h2>
+
+        <p class="section-subtitle">
+          Projetos desenvolvidos com foco em análise de dados, visualização e
+          Business Intelligence.
+        </p>
+
+        <div class="projects-grid">
+          <!-- PROJETO 1 -->
+
+          <div class="project-card">
+            <div class="project-image">Excel Analytics</div>
+
+            <div class="project-content">
+              <h3>Análise de Vendas</h3>
+
+              <p>
+                Projeto desenvolvido em Excel para análise de vendas,
+                faturamento, métricas e geração de insights estratégicos.
+              </p>
+
+              <div class="stack">
+                <span>Excel</span>
+                <span>Dashboard</span>
+                <span>Analytics</span>
+              </div>
+
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/HenriqueCTorres"
+                  target="_blank"
+                  class="btn btn-primary"
+                >
+                  GitHub
+                </a>
+
+                <a
+                  href="/arquivos/Vendas.jpg"
+                  class="btn btn-secondary"
+                  target="_blank"
+                >
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJETO 2 -->
+
+          <div class="project-card">
+            <div class="project-image">Power BI</div>
+
+            <div class="project-content">
+              <h3>Análise de Energia</h3>
+
+              <p>
+                Dashboard em Power BI com análise de consumo energético,
+                indicadores e visualizações interativas para decisões.
+              </p>
+
+              <div class="stack">
+                <span>Power BI</span>
+                <span>DAX</span>
+                <span>BI</span>
+              </div>
+
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/HenriqueCTorres"
+                  target="_blank"
+                  class="btn btn-primary"
+                >
+                  GitHub
+                </a>
+
+                <a
+                  href="/arquivos/Energia.jpg"
+                  class="btn btn-secondary"
+                  target="_blank"
+                >
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJETO 3 -->
+
+          <div class="project-card">
+            <div class="project-image">Data Insights</div>
+
+            <div class="project-content">
+              <h3>Valor da Informação</h3>
+
+              <p>
+                Projeto em Excel focado em análise de dados e interpretação
+                estratégica da informação para apoio à tomada de decisão.
+              </p>
+
+              <div class="stack">
+                <span>Excel</span>
+                <span>Dados</span>
+                <span>Insights</span>
+              </div>
+
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/HenriqueCTorres"
+                  target="_blank"
+                  class="btn btn-primary"
+                >
+                  GitHub
+                </a>
+
+                <a
+                  href="/arquivos/VI.jpg"
+                  class="btn btn-secondary"
+                  target="_blank"
+                >
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon">SQL</div>
+            <h3>SQL</h3>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">PY</div>
+            <h3>Python</h3>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">BI</div>
+            <h3>Power BI</h3>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">EX</div>
+            <h3>Excel</h3>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">GIT</div>
+            <h3>Git/GitHub</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+
+    <section id="experiencia">
+      <div class="container">
+        <h2 class="section-title">Formação</h2>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+              <span>2024 - Atual</span>
+
+              <h3>FIAP — Análise e Desenvolvimento de Sistemas</h3>
+
+              <p>
+                Formação voltada para desenvolvimento de sistemas, aplicações
+                web e mobile, bancos de dados, Inteligência Artificial, IoT e
+                DevOps.
+                <br />Capacitação técnica e estratégica com foco em inovação,
+                soluções digitais e tecnologias utilizadas no mercado global.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+              <span>Business Intelligence</span>
+
+              <h3>Projetos Autorais</h3>
+
+              <p>
+                Desenvolvimento de dashboards, análises e projetos voltados para
+                geração de insights estratégicos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+
+    <section id="contato">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <h3>LinkedIn</h3>
+
+              <p>
+                <a href="https://www.linkedin.com/in/henrich1/" target="_blank">
+                  linkedin.com/in/henrich1
+                </a>
+              </p>
+            </div>
+
+            <div class="contact-item">
+              <h3>GitHub</h3>
+
+              <p>
+                <a href="https://github.com/HenriqueCTorres" target="_blank">
+                  github.com/HenriqueCTorres
+                </a>
+              </p>
+            </div>
+
+            <div class="contact-item">
+              <h3>Email</h3>
+
+              <p>
+                <a href="mailto:henriquect08@gmail.com">
+                  henriquect08@gmail.com
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <!-- FORM -->
+
+          <form>
+            <div class="input-group">
+              <input type="text" placeholder="Seu nome" />
+            </div>
+
+            <div class="input-group">
+              <input type="email" placeholder="Seu email" />
+            </div>
+
+            <div class="input-group">
+              <textarea placeholder="Sua mensagem"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+
     <footer>
-      <p>&copy; 2026 Henrique Cunha Torres</p>
+      <div class="container">
+        <p>Henrique Torres • Data & BI Portfolio</p>
+      </div>
     </footer>
-    <script>
-      // Desenha "teias" ou redes de dados no topo
-      const canvas = document.getElementById("data-web");
-      if (canvas && canvas.getContext) {
-        const ctx = canvas.getContext("2d");
-        const w = canvas.width;
-        const h = canvas.height;
-        const points = [];
-        const numPoints = 24;
-        for (let i = 0; i < numPoints; i++) {
-          points.push({
-            x: Math.random() * w,
-            y: Math.random() * h * 0.7 + 20,
-          });
-        }
-        // Conecta pontos próximos
-        for (let i = 0; i < numPoints; i++) {
-          for (let j = i + 1; j < numPoints; j++) {
-            const dx = points[i].x - points[j].x;
-            const dy = points[i].y - points[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 180) {
-              ctx.strokeStyle = "rgba(100,200,255,0.18)";
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(points[i].x, points[i].y);
-              ctx.lineTo(points[j].x, points[j].y);
-              ctx.stroke();
-            }
-          }
-        }
-        // Desenha os pontos
-        for (let i = 0; i < numPoints; i++) {
-          ctx.beginPath();
-          ctx.arc(points[i].x, points[i].y, 4, 0, 2 * Math.PI);
-          ctx.fillStyle = "rgba(100,200,255,0.7)";
-          ctx.fill();
-        }
-      }
-    </script>
   </body>
 </html>
