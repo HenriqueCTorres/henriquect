@@ -2,7 +2,7 @@
 
 Portfólio pessoal de **Henrique Torres**, estudante de Análise e Desenvolvimento de Sistemas na FIAP e desenvolvedor em formação.
 
-O projeto apresenta minha trajetória de aprendizado prático por meio de interfaces, APIs, aplicações mobile e análises orientadas a dados.
+O projeto apresenta minha trajetória de aprendizado prático por meio de interfaces, APIs Java e soluções orientadas a problemas reais.
 
 > **Acesse o portfólio:** [henriquect.vercel.app](https://henriquect.vercel.app)
 
@@ -18,36 +18,48 @@ A proposta é mostrar não apenas os resultados, mas também os caminhos que est
 - Integração entre front-end e back-end;
 - Criação e consumo de APIs REST;
 - Desenvolvimento mobile com React Native e Expo;
-- Desenvolvimento de APIs com Node.js e Java;
+- Desenvolvimento de APIs com Java, Spring Boot e Quarkus;
 - Análise e visualização de dados com Python, Pandas, SQL e SQLite.
 
 O design segue uma linguagem visual escura, editorial e tecnológica, com foco em clareza, acessibilidade, responsividade e personalidade.
 
 ## Projetos em destaque
 
-### Dashboard de Vendas
+### Fidelis API
 
-Pipeline de análise desenvolvido com Python, Pandas, SQLite e SQL. O projeto parte de arquivos CSV, trata os dados, armazena as informações e gera indicadores de negócio.
+Plataforma de gestão veterinária com API REST, interface web, autenticação por perfis e regras de negócio para consultas, vacinação, lembretes e retenção de pets.
 
-[Ver repositório](https://github.com/HenriqueCTorres/Dashboard-Vendas)
+[Ver repositório](https://github.com/Driven-Soft/FidelisApi-Java)
 
-### Conexão de API com React
+### Lares API
 
-Aplicação React conectada a um backend Node.js por meio do Axios, permitindo visualizar, criar e excluir registros através da interface.
+API CitizenTech para registrar e acompanhar ocorrências urbanas, com autenticação, histórico de status e triagem assíncrona integrada a RabbitMQ e serviços de IA.
 
-[Ver repositório](https://github.com/HenriqueCTorres/Conexao-de-API-com-React)
+[Ver repositório](https://github.com/Driven-Soft/LaresApi-Java)
 
-### Teste de API com Node.js
+### Argos API
 
-API REST desenvolvida com Express, MongoDB e Prisma, explorando rotas, parâmetros, status HTTP e operações CRUD.
+Backend para monitoramento de desastres naturais que combina zonas de risco, alertas e ocorrências com dados de precipitação do Open-Meteo e imagens da NASA.
 
-[Ver repositório](https://github.com/HenriqueCTorres/Teste-de-API-com-NodeJs)
+[Ver repositório](https://github.com/Driven-Soft/ArgosApi-Java)
 
-### CP1 Mobile
+### Auralis API
 
-Aplicativo desenvolvido com React Native e Expo para cadastro e exibição de informações, utilizando hooks, componentes e estilização nativa.
+API REST para uma solução de bem-estar, hábitos e engajamento, com recursos para usuários, registros de saúde, feedbacks e inscrições de notificações.
 
-[Ver repositório](https://github.com/HenriqueCTorres/CP1-Mobile)
+[Ver repositório](https://github.com/Driven-Soft/Auralis-API)
+
+### HC-Auxilia API
+
+Backend para uma plataforma de saúde digital com recursos de exames, feedbacks e notificações, organizado em camadas de Resource, Business e Repository.
+
+[Ver repositório](https://github.com/Driven-Soft/HC-Auxilia-API)
+
+### Library Management API
+
+Projeto Java focado em qualidade de domínio, testes e regras de negócio para evitar ISBNs duplicados em uma API de gerenciamento de biblioteca.
+
+[Ver repositório](https://github.com/HenriqueCTorres/CP02-Java-Adv)
 
 ### Outros projetos
 

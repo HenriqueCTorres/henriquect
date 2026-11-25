@@ -20,19 +20,61 @@ function Icon({ name, size = 18, strokeWidth = 1.8 }) {
   return <svg aria-hidden="true" className="icon" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">{iconPaths[name]}</svg>
 }
 
+let scrollAnimationId
+
+function scrollToSection(target) {
+  const element = document.querySelector(target)
+  if (!element) return
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const headerOffset = window.innerWidth <= 680 ? 77 : 94
+  const destination = target === '#top'
+    ? 0
+    : Math.max(0, element.getBoundingClientRect().top + window.scrollY - headerOffset)
+
+  if (Math.abs(destination - window.scrollY) < 2) {
+    window.scrollTo(0, destination)
+    window.history.replaceState(null, '', target)
+    return
+  }
+
+  const start = window.scrollY
+  const distance = destination - start
+  const duration = prefersReducedMotion ? 800 : 2600
+  const previousScrollBehavior = document.documentElement.style.scrollBehavior
+  document.documentElement.style.scrollBehavior = 'auto'
+  window.clearInterval(scrollAnimationId)
+  const startedAt = performance.now()
+
+  const easeInOut = (progress) => progress < 0.5
+    ? 4 * progress * progress * progress
+    : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+  scrollAnimationId = window.setInterval(() => {
+    const progress = Math.min(1, (performance.now() - startedAt) / duration)
+    window.scrollTo({ top: start + distance * easeInOut(progress), left: 0, behavior: 'auto' })
+
+    if (progress >= 1) {
+      window.clearInterval(scrollAnimationId)
+      document.documentElement.style.scrollBehavior = previousScrollBehavior
+      window.history.replaceState(null, '', target)
+    }
+  }, 16)
+}
+
 const projects = [
-  { number: '01', title: 'Dashboard de Vendas', slug: 'Dashboard-Vendas', description: 'Pipeline de análise que parte de CSVs, trata os dados com Pandas, persiste em SQLite e transforma consultas SQL em indicadores de negócio.', tags: ['Python', 'Pandas', 'SQLite', 'SQL'], type: 'Dados & BI', accent: 'lime', href: `${github}/Dashboard-Vendas` },
-  { number: '02', title: 'Conexão de API com React', slug: 'Conexao-de-API-com-React', description: 'Interface React conectada ao backend Node.js com Axios: leitura, criação e exclusão de registros em um fluxo completo entre tela, servidor e banco.', tags: ['React', 'Axios', 'Node.js', 'Hooks'], type: 'Front-end + API', accent: 'violet', href: `${github}/Conexao-de-API-com-React` },
-  { number: '03', title: 'Teste de API com Node.js', slug: 'Teste-de-API-com-NodeJs', description: 'API REST com Express, MongoDB e Prisma, explorando rotas, parâmetros, status HTTP e operações CRUD de ponta a ponta.', tags: ['Node.js', 'Express', 'MongoDB', 'Prisma'], type: 'Back-end', accent: 'orange', href: `${github}/Teste-de-API-com-NodeJs` },
-  { number: '04', title: 'CP1 Mobile', slug: 'CP1-Mobile', description: 'Aplicativo em React Native com Expo para cadastrar e exibir dados de um aluno, usando hooks, componentes e estilização nativa.', tags: ['React Native', 'Expo', 'JavaScript'], type: 'Mobile', accent: 'blue', href: `${github}/CP1-Mobile` },
-  { number: '05', title: 'Library Management API', slug: 'CP02-Java-Adv', description: 'Projeto Java focado em qualidade de domínio: relatório de bugs, testes e regras de negócio para evitar ISBNs duplicados em uma API de biblioteca.', tags: ['Java', 'API', 'Testes', 'Regras de negócio'], type: 'Qualidade & Java', accent: 'pink', href: `${github}/CP02-Java-Adv` },
-  { number: '06', title: 'API de Futebol', slug: 'Api-em-Java', description: 'Serviço em Java com Quarkus, experimentando uma estrutura moderna para APIs e o ciclo de desenvolvimento com live coding.', tags: ['Java', 'Quarkus', 'REST'], type: 'Back-end', accent: 'cyan', href: `${github}/Api-em-Java` },
+  { number: '01', title: 'Fidelis API', slug: 'FidelisApi-Java', description: 'Plataforma de gestão veterinária com API REST, interface web, autenticação por perfis e regras de negócio para consultas, vacinação, lembretes e retenção de pets.', tags: ['Java 17', 'Spring Boot', 'Security', 'JPA', 'Flyway'], type: 'Produto de domínio', accent: 'lime', href: 'https://github.com/Driven-Soft/FidelisApi-Java' },
+  { number: '02', title: 'Lares API', slug: 'LaresApi-Java', description: 'API CitizenTech para registrar e acompanhar ocorrências urbanas, com autenticação, histórico de status e triagem assíncrona integrada a RabbitMQ e serviços de IA.', tags: ['Java 17', 'Spring Boot', 'RabbitMQ', 'Spring AI'], type: 'CitizenTech', accent: 'violet', href: 'https://github.com/Driven-Soft/LaresApi-Java' },
+  { number: '03', title: 'Argos API', slug: 'ArgosApi-Java', description: 'Backend para monitoramento de desastres naturais que combina zonas de risco, alertas e ocorrências com dados de precipitação do Open-Meteo e imagens da NASA.', tags: ['Java 21', 'JWT', 'HATEOAS', 'Open-Meteo'], type: 'Dados & impacto', accent: 'orange', href: 'https://github.com/Driven-Soft/ArgosApi-Java' },
+  { number: '04', title: 'Auralis API', slug: 'Auralis-API', description: 'API REST para uma solução de bem-estar, hábitos e engajamento, com recursos para usuários, registros de saúde, feedbacks e inscrições de notificações.', tags: ['Java', 'Quarkus', 'Oracle', 'REST'], type: 'Bem-estar digital', accent: 'blue', href: 'https://github.com/Driven-Soft/Auralis-API' },
+  { number: '05', title: 'HC-Auxilia API', slug: 'HC-Auxilia-API', description: 'Backend para uma plataforma de saúde digital com recursos de exames, feedbacks e notificações, organizado em camadas de Resource, Business e Repository.', tags: ['Java', 'Quarkus', 'Oracle', 'JAX-RS'], type: 'Saúde digital', accent: 'pink', href: 'https://github.com/Driven-Soft/HC-Auxilia-API' },
+  { number: '06', title: 'Library Management API', slug: 'CP02-Java-Adv', description: 'Projeto Java focado em qualidade de domínio, testes e regras de negócio para evitar ISBNs duplicados em uma API de gerenciamento de biblioteca.', tags: ['Java', 'API', 'Testes', 'Regras de negócio'], type: 'Qualidade & Java', accent: 'cyan', href: `${github}/CP02-Java-Adv` },
 ]
 
 const skills = [
   { title: 'Interfaces que respondem', icon: 'code', text: 'React, JavaScript, HTML, CSS e React Native para construir experiências claras, componentizadas e responsivas.', chips: ['React', 'JavaScript', 'CSS', 'Expo'] },
   { title: 'Dados que viram direção', icon: 'chart', text: 'Python, Pandas, SQL e SQLite para explorar, organizar e traduzir dados em indicadores acionáveis.', chips: ['Python', 'Pandas', 'SQL', 'SQLite'] },
-  { title: 'Back-end com propósito', icon: 'database', text: 'Node.js, Express, MongoDB, Prisma, Java e Quarkus para criar APIs e entender o produto de ponta a ponta.', chips: ['Node.js', 'Express', 'Java', 'Quarkus'] },
+  { title: 'Back-end com propósito', icon: 'database', text: 'Java, Spring Boot, Quarkus, APIs REST, mensageria e persistência para resolver problemas de domínio real.', chips: ['Java', 'Spring Boot', 'Quarkus', 'APIs REST'] },
 ]
 
 function ProjectCard({ project }) {
@@ -46,24 +88,29 @@ function ProjectCard({ project }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false)
+  const handleAnchor = (event, target) => {
+    event.preventDefault()
+    closeMenu()
+    scrollToSection(target)
+  }
 
   return <div className="site-shell">
     <div className="grain" aria-hidden="true" />
     <header className="site-header">
-      <a href="#top" className="wordmark" onClick={closeMenu} aria-label="Voltar ao início"><span className="wordmark-mark">HT</span><span>henrique<span className="wordmark-dot">.</span>dev</span></a>
+      <a href="#top" className="wordmark" onClick={(event) => handleAnchor(event, '#top')} aria-label="Voltar ao início"><span className="wordmark-mark">🎲</span><span>henrique<span className="wordmark-dot">.</span>dev</span></a>
       <button className="menu-toggle" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}><Icon name={menuOpen ? 'close' : 'menu'} size={22} /></button>
-      <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Navegação principal"><a href="#projetos" onClick={closeMenu}>Projetos <span>06</span></a><a href="#competencias" onClick={closeMenu}>Competências</a><a href="#sobre" onClick={closeMenu}>Sobre</a><a href="#contato" className="nav-contact" onClick={closeMenu}>Vamos conversar <Icon name="arrow" size={16} /></a></nav>
+      <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Navegação principal"><button type="button" onClick={(event) => handleAnchor(event, '#projetos')}>Projetos <span>06</span></button><button type="button" onClick={(event) => handleAnchor(event, '#competencias')}>Competências</button><button type="button" onClick={(event) => handleAnchor(event, '#sobre')}>Sobre</button><button type="button" className="nav-contact" onClick={(event) => handleAnchor(event, '#contato')}>Vamos conversar <Icon name="arrow" size={16} /></button></nav>
     </header>
 
     <main id="top">
       <section className="hero section-pad" aria-labelledby="hero-title">
-        <div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" />Disponível para novas oportunidades <span className="eyebrow-line" /></div><h1 id="hero-title">Código com<br /><em>curiosidade.</em><br />Dados com direção.</h1><p className="hero-lede">Sou Henrique Torres, desenvolvedor em formação. Transformo aprendizado prático em interfaces, APIs e análises que fazem sentido.</p><div className="hero-actions"><a href="#projetos" className="button button-primary">Explorar projetos <Icon name="arrow" size={17} /></a><a href={github} className="button button-ghost" target="_blank" rel="noreferrer"><Icon name="github" size={18} /> GitHub <Icon name="external" size={14} /></a></div><div className="hero-meta"><span>Guarulhos, SP</span><span className="meta-divider" /><span>FIAP · ADS</span></div></div>
-        <div className="hero-art" aria-label="Resumo visual das áreas de atuação"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="hero-panel"><div className="panel-bar"><span><i /> henrique@portfolio:~</span><span>● ● ●</span></div><div className="panel-body"><p className="code-comment">// onde a curiosidade encontra o código</p><p><span className="code-key">const</span> <span className="code-name">foco</span> = [</p><p className="code-indent"><span className="code-string">"interfaces"</span>,</p><p className="code-indent"><span className="code-string">"APIs"</span>,</p><p className="code-indent"><span className="code-string">"dados"</span></p><p>]</p><div className="code-result"><span className="result-dot" /> construindo próximo capítulo<span className="cursor" /></div></div></div><div className="floating-note note-top"><Icon name="spark" size={15} /> aprender fazendo</div><div className="floating-note note-bottom">28 repos públicos <span>↗</span></div></div>
+        <div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" />Disponível para novas oportunidades <span className="eyebrow-line" /></div><h1 id="hero-title">Código com<br /><em>curiosidade.</em><br />Dados com direção.</h1><p className="hero-lede">Sou Henrique Torres, desenvolvedor em formação. Transformo aprendizado prático em interfaces, APIs e análises que fazem sentido.</p><div className="hero-actions"><button type="button" className="button button-primary" onClick={(event) => handleAnchor(event, '#projetos')}>Explorar projetos <Icon name="arrow" size={17} /></button><a href={github} className="button button-ghost" target="_blank" rel="noreferrer"><Icon name="github" size={18} /> GitHub <Icon name="external" size={14} /></a></div><div className="hero-meta"><span>Guarulhos, SP</span><span className="meta-divider" /><span>FIAP · ADS</span></div></div>
+        <div className="hero-art" aria-label="Resumo visual das áreas de atuação"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="hero-panel"><div className="panel-bar"><span><i /> henrique@portfolio:~</span><span>● ● ●</span></div><div className="panel-body"><p className="code-comment">// onde a curiosidade encontra o código</p><p><span className="code-key">const</span> <span className="code-name">foco</span> = [</p><p className="code-indent"><span className="code-string">"APIs Java"</span>,</p><p className="code-indent"><span className="code-string">"produto"</span>,</p><p className="code-indent"><span className="code-string">"impacto"</span></p><p>]</p><div className="code-result"><span className="result-dot" /> construindo próximo capítulo<span className="cursor" /></div></div></div><div className="floating-note note-top"><Icon name="spark" size={15} /> aprender fazendo</div><div className="floating-note note-bottom">06 projetos em destaque <span>↗</span></div></div>
       </section>
 
-      <section className="signal-strip" aria-label="Resumo do perfil"><div className="signal-inner"><span className="signal-label">EM MOVIMENTO</span><div className="signal-track"><span className="signal-pulse" /> front-end <b>→</b> APIs <b>→</b> mobile <b>→</b> dados <b>→</b> próximos experimentos</div><span className="signal-year">2026</span></div></section>
+      <section className="signal-strip" aria-label="Resumo do perfil"><div className="signal-inner"><span className="signal-label">EM MOVIMENTO</span><div className="signal-track"><span className="signal-pulse" /> front-end <b>→</b> APIs Java <b>→</b> impacto social <b>→</b> próximos experimentos</div><span className="signal-year">2026</span></div></section>
 
-      <section className="projects section-pad" id="projetos" aria-labelledby="projects-title"><div className="section-heading split-heading"><div><p className="section-kicker">01 / trabalho selecionado</p><h2 id="projects-title">Projetos que mostram<br /><span>o processo.</span></h2></div><p className="section-intro">Uma seleção do que venho construindo para entender tecnologia na prática — da primeira interface ao dado que sustenta uma decisão.</p></div><div className="project-grid">{projects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div><div className="all-projects"><span>Quer ver o laboratório completo?</span><a href={github} target="_blank" rel="noreferrer">Acessar todos os repositórios <Icon name="arrow" size={17} /></a></div></section>
+      <section className="projects section-pad" id="projetos" aria-labelledby="projects-title"><div className="section-heading split-heading"><div><p className="section-kicker">01 / trabalho selecionado</p><h2 id="projects-title">Projetos que mostram<br /><span>o impacto.</span></h2></div><p className="section-intro">Seis projetos construídos para problemas concretos: saúde, cidades, bem-estar, prevenção, cuidado com animais e qualidade de software.</p></div><div className="project-grid">{projects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div><div className="all-projects"><span>Quer ver o laboratório completo?</span><a href={github} target="_blank" rel="noreferrer">Acessar todos os repositórios <Icon name="arrow" size={17} /></a></div></section>
 
       <section className="trajectory section-pad" id="sobre" aria-labelledby="trajectory-title"><div className="trajectory-visual"><div className="big-index">02</div><div className="vertical-label">TRAJETÓRIA EM CONSTRUÇÃO</div><div className="trajectory-orbit"><span className="orbit-dot dot-lime" /><span className="orbit-dot dot-violet" /><span className="orbit-dot dot-orange" /></div></div><div className="trajectory-copy"><p className="section-kicker">02 / sobre o caminho</p><h2 id="trajectory-title">Ainda estou<br /><em>aprendendo.</em><br />E isso é o ponto.</h2><p>Minha trajetória acontece no encontro entre aulas, experimentos e projetos que saem do papel. Cada repositório é uma forma de testar uma ideia — e entender um pouco melhor como as partes se conectam.</p><p>Hoje, estudo Análise e Desenvolvimento de Sistemas na FIAP e busco oportunidades para continuar construindo, colaborando e evoluindo.</p><a className="text-link" href="https://www.linkedin.com/in/henrich1/" target="_blank" rel="noreferrer">Conheça meu LinkedIn <Icon name="arrow" size={16} /></a></div></section>
 
@@ -72,7 +119,7 @@ function App() {
       <section className="contact section-pad" id="contato" aria-labelledby="contact-title"><div className="contact-glow" aria-hidden="true" /><div className="contact-content"><p className="section-kicker">04 / próximo passo</p><h2 id="contact-title">Vamos construir<br /><em>algo que importa?</em></h2><p>Se você tem um problema para resolver, um time para conhecer ou só quer trocar uma ideia sobre tecnologia, minha caixa de entrada está aberta.</p><div className="contact-actions"><a className="button button-primary" href="mailto:henriquect08@gmail.com"><Icon name="mail" size={17} /> Enviar um e-mail</a><a className="button button-outline" href={github} target="_blank" rel="noreferrer"><Icon name="github" size={17} /> Ver GitHub</a></div></div><div className="contact-aside"><span>canal preferido</span><a href="mailto:henriquect08@gmail.com">henriquect08<br />@gmail.com</a><span className="aside-arrow">↗</span></div></section>
     </main>
 
-    <footer className="site-footer"><a href="#top" className="wordmark"><span className="wordmark-mark">HT</span><span>henrique<span className="wordmark-dot">.</span>dev</span></a><p>Projetando o próximo commit, uma linha de cada vez.</p><div className="footer-links"><a href={github} target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" size={18} /></a><a href="https://www.linkedin.com/in/henrich1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Icon name="linkedin" size={18} /></a><a href="mailto:henriquect08@gmail.com" aria-label="E-mail"><Icon name="mail" size={18} /></a></div><span className="footer-copy">© {new Date().getFullYear()} HT</span></footer>
+    <footer className="site-footer"><button type="button" className="wordmark" onClick={(event) => handleAnchor(event, '#top')} aria-label="Voltar ao início"><span className="wordmark-mark">🎲</span><span>henrique<span className="wordmark-dot">.</span>dev</span></button><p>Projetando o próximo commit, uma linha de cada vez.</p><div className="footer-links"><a href={github} target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" size={18} /></a><a href="https://www.linkedin.com/in/henrich1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Icon name="linkedin" size={18} /></a><a href="mailto:henriquect08@gmail.com" aria-label="E-mail"><Icon name="mail" size={18} /></a></div><span className="footer-copy">© {new Date().getFullYear()} Henrique Torres</span></footer>
   </div>
 }
 
